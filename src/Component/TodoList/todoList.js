@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TodoItem from '../TodoItem/todoItem';
 import todoListModule from './todoList.module.css';
 
 const TodoList = () => {
@@ -14,8 +15,10 @@ const TodoList = () => {
                     >Create</button>
                 </header>
                 <div className={todoListModule.items}>
-                    
-                   
+                    <TodoItem/>
+                    <TodoItem/>
+                    <TodoItem/>
+                    <TodoItem/>
                 </div>
             </div>
         </div>
