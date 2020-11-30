@@ -1,24 +1,30 @@
 *{
-    margin: 0;
-    padding: 0;
-	  border: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
+body {
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(-20deg, #273679 0%, #243077 100%);
+
+}
 ::-webkit-scrollbar
 {
-  display: none;
-    
+display: none;
+  
 }
 
 ::-webkit-scrollbar-track
 {
-  display: none;
- 
+display: none;
+
 }
 
 ::-webkit-scrollbar-thumb
 {
-  display: none;
- 
+display: none;
+
 }

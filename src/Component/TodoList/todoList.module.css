@@ -1,0 +1,72 @@
+a, a:hover {
+    text-decoration: none;
+  }
+  .h1{
+    color: rgb(28, 41, 114);
+  }
+  .wrapper {
+    margin: 10px;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    padding: 10px ;
+    /* background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%); */
+  }
+  .header{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+  .addTodo{
+    margin: 10px;
+    width: 150px;
+    height: 40px;
+    border-radius: 25px;
+    background: linear-gradient(-20deg, #0c1d66 0%, #384aad 100%);
+    box-shadow:  2px 2px 2px rgb(77, 76, 76);
+    outline: none;
+    color: whitesmoke;
+    font-size: 27px;
+  }
+  .addTodo:hover{
+    background: linear-gradient(-20deg, #344699 0%, #111d63 100%);
+    box-shadow:  1px 1px 1px rgb(77, 76, 76);
+    outline: none;
+    color: whitesmoke;
+    font-size: 25px;
+  }
+  .items{
+    width: 90%;
+    border: 2px solid rgb(12, 109, 235);
+    border-radius: 15px;
+    overflow: scroll;
+    padding: 5px;
+    height: 60vh;
+    margin: 10px;
+  }
+  .profile_card {
+    width: 100%;
+    min-height: 460px;
+    margin:  0 auto;
+    box-shadow: 0px 3px 4px 2px rgba(4, 46, 109, 0.651);
+    border: 2px solid rgb(12, 109, 235);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 950px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      height: auto;
+      min-height: 100vh;
+      padding-top: 100px;
+    }
+  }
+  
