@@ -26,10 +26,37 @@
 	flex-direction: column;
 
 }
-.searchitem{
-	width: 90%;
-	margin-left: 15px;
+.modalDiv{
+	width: 95%;
+	height: 70px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 	border-bottom: 1px solid black;
+	border-radius: 3px;
+	margin: 5px;
+}
+.modalButtons{
+	width: 40px;
+	height: 30px;
+	background-color: #183bc58c;
+	border-radius: 5px;
+	box-shadow: 0.5px 0.5px 0 black; 
+	margin-bottom: 3px;
+	outline: none;
+}
+.modalButtons:hover{
+	width: 38.5px;
+	height: 28.5px;
+	background-color: #ff19198c;
+	border-radius: 5px;
+	margin-bottom: 3px;
+	outline: none;
+	color: white;
+}
+.searchitem{
+	width: 90px;
+	margin-left: 15px;
 }
 .searchDivNone{
 	display: none;
