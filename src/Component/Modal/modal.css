@@ -1,0 +1,191 @@
+#modal-container {
+    position: fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    z-index: 1;
+  }
+  .off{
+    display: none;
+  }
+  
+  #modal-container.four {
+    z-index: 1;
+    transform: scale(1);
+  }
+  #modal-container.four .modal-background {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  #modal-container.four .modal-background .modal {
+    animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container.four + .content {
+    z-index: 1;
+    animation: blowUpContent 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container.four.out .modal-background .modal {
+    
+    animation: blowUpModalTwo 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container.four.out + .content {
+    animation: blowUpContentTwo 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  
+  #modal-container .modal-background {
+    display: table-cell;
+    /* background: rgba(0, 0, 0, 0.8); */
+    text-align: center;
+    vertical-align: middle;
+  }
+  #modal-container .modal-background .modal {
+    background: white;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin:auto;
+    font-weight: 300;
+    position: relative;
+  }
+  
+  #modal-container .modal-background .modal h2 {
+    font-size: 25px;
+    line-height: 25px;
+    margin-bottom: 15px;
+  }
+  #modal-container .modal-background .modal p {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  #modal-container .modal-background .modal .modal-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .modal{
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  @keyframes blowUpContent {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    99.9% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes blowUpContentTwo {
+    0% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  } 
+   @keyframes blowUpModal {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes blowUpModalTwo {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+  /* inputs */
+  .form{
+    width: 80%;
+    position:relative;
+    height: 50px;
+    overflow: hidden;
+  }
+  .form input{
+    font-size: 16px;
+    padding-top: 20px;
+    width: 100%;
+    height: 100%;
+      background: transparent;
+      color: #595F6E;
+    border: none;
+    outline: none;
+  }
+  .form label{
+    
+    position:absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid black;
+    pointer-events: none;
+  }
+  .form label::after{
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #2b3486;
+    transition: transform 0.5s cubic-bezier(1,.06,.73,.37);
+    transform: translateX(-100%);
+  }
+  
+  .span{
+    position:absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+  }
+  
+  .form input:focus + .label-hoshi .content-hoshi, .form input:valid + .label-hoshi .content-hoshi{
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: #2b3486;
+  }
+  .form input:focus + .label-hoshi::after, .form input:valid + .label-hoshi::after{
+    transform:translateX(0%);
+  }
+  .buttonContext{
+    margin: 10px;
+    text-align: center;
+    width: 85px;
+    height: 40px;
+    border: 1px solid black;
+    box-shadow: 3px 3px 3px black;
+    border-radius: 13px;
+    outline: none;
+    color: #222fa1;
+    font-size: 25px;
+  
+  }
+  .buttonContext:hover{
+    background-color: #2b3486;
+    color: aliceblue;
+  }
