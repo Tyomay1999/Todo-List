@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../Modal/modal';
 import TodoItem from '../TodoItem/todoItem';
 import todoListModule from './todoList.module.css';
+import axios from 'axios';
+import { API_URL_GET_CREATE } from '../../config';
+import { getTodo, GET_TODO } from '../Redux/action';
 
 const TodoList = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -10,9 +13,25 @@ const TodoList = () => {
     const [inputTitle, changeInputTitle] = useState('')
     const [inputDescription, changeInputDescription] = useState('')
     const [inputColor, changeInputColor] = useState('')
-    const [todoIndex, setTodoIndex] = useState(0)
-    const todos = useSelector(state => state)
+    const [todoId, changeTodoId] = useState('')
+    const [data, setData] = useState(false)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        setTimeout(() => {
+            axios.get(API_URL_GET_CREATE)
+                .then(resp => {
+                    dispatch(getTodo({
+                        type: GET_TODO,
+                        payload: resp.data
+                    }))
+                })
+                .catch(rej => {
+                    return console.log(rej)
+                })
+        }, 1500)
+    }, [data])
 
+    const todos = useSelector(state => state)
     return (
         <div className={todoListModule.wrapper}>
             <div className={todoListModule.profile_card}>
@@ -26,36 +45,38 @@ const TodoList = () => {
                     >Create</button>
                 </header>
                 <div className={todoListModule.items}>
-                <Modal
-                
+                    <Modal
+                        data={data}
                         isOpen={isOpen}
+                        todoId={todoId}
+                        setData={setData}
                         setIsOpen={setIsOpen}
-                        buttonContext={buttonContext}
-                        todoIndex={todoIndex}
                         inputTitle={inputTitle}
-                        inputDescription={inputDescription}
                         inputColor={inputColor}
+                        changeTodoId={changeTodoId}
+                        buttonContext={buttonContext}
+                        inputDescription={inputDescription}
                         changeInputTitle={changeInputTitle}
-                        changeInputDescription={changeInputDescription}
                         changeInputColor={changeInputColor}
-                    // setInputValues={setInputValues}
-                    /> 
+                        changeInputDescription={changeInputDescription}
+                    />
                     {
-                        todos.map((todo, index) => {
+                        todos ? todos.map((todo, index) => {
                             return (
                                 <TodoItem
                                     key={index}
-                                    isOpen={isOpen}
-                                    setIsOpen={setIsOpen}
-                                    setButtonContext={setButtonContext}
+                                    data={data}
                                     todo={todo}
-                                    num={index}
-                                    setTodoIndex={setTodoIndex}
+                                    isOpen={isOpen}
+                                    setData={setData}
+                                    setIsOpen={setIsOpen}
+                                    changeTodoId={changeTodoId}
+                                    setButtonContext={setButtonContext}
                                     changeInputTitle={changeInputTitle}
-                                    changeInputDescription={changeInputDescription}
                                     changeInputColor={changeInputColor}
+                                    changeInputDescription={changeInputDescription}
                                 />)
-                        })
+                        }) : ""
                     }
                 </div>
             </div>
