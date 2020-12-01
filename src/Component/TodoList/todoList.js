@@ -6,6 +6,7 @@ import todoListModule from './todoList.module.css';
 import axios from 'axios';
 import { API_URL_GET_CREATE } from '../../config';
 import { getTodo, GET_TODO } from '../Redux/action';
+import SearchTodo from '../SearchTodo/searchTodo';
 
 const TodoList = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -33,51 +34,58 @@ const TodoList = () => {
 
     const todos = useSelector(state => state)
     return (
-        <div className={todoListModule.wrapper}>
-            <div className={todoListModule.profile_card}>
-                <header className={todoListModule.header}>
-                    <p></p>
-                    <p></p>
-                    <h1 className={todoListModule.h1}>Todo List</h1>
-                    <button
-                        className={todoListModule.addTodo}
-                        onClick={() => { setIsOpen(!isOpen); setButtonContext('create') }}
-                    >Create</button>
-                </header>
-                <div className={todoListModule.items}>
-                    <Modal
-                        data={data}
-                        isOpen={isOpen}
-                        todoId={todoId}
-                        setData={setData}
-                        setIsOpen={setIsOpen}
-                        inputTitle={inputTitle}
-                        inputColor={inputColor}
-                        changeTodoId={changeTodoId}
-                        buttonContext={buttonContext}
-                        inputDescription={inputDescription}
-                        changeInputTitle={changeInputTitle}
-                        changeInputColor={changeInputColor}
-                        changeInputDescription={changeInputDescription}
-                    />
-                    {
-                        todos ? todos.map((todo, index) => {
-                            return (
-                                <TodoItem
-                                    key={index}
-                                    data={data}
-                                    todo={todo}
-                                    isOpen={isOpen}
-                                    setData={setData}
-                                    setIsOpen={setIsOpen}
-                                    changeTodoId={changeTodoId}
-                                    setButtonContext={setButtonContext}
-                                    changeInputTitle={changeInputTitle}
-                                    changeInputColor={changeInputColor}
-                                    changeInputDescription={changeInputDescription}
-                                />)
-                        }) : ""
-                    }
+        <div>
+            <SearchTodo
+                data={data}
+                todos={todos}
+                setData={setData}
+            />
+            <div className={todoListModule.wrapper}>
+                <div className={todoListModule.profile_card}>
+                    <header className={todoListModule.header}>
+                        <p></p>
+                        <p></p>
+                        <h1 className={todoListModule.h1}>Todo List</h1>
+                        <button
+                            className={todoListModule.addTodo}
+                            onClick={() => { setIsOpen(!isOpen); setButtonContext('create') }}
+                        >Create</button>
+                    </header>
+                    <div className={todoListModule.items}>
+                        <Modal
+                            data={data}
+                            isOpen={isOpen}
+                            todoId={todoId}
+                            setData={setData}
+                            setIsOpen={setIsOpen}
+                            inputTitle={inputTitle}
+                            inputColor={inputColor}
+                            changeTodoId={changeTodoId}
+                            buttonContext={buttonContext}
+                            inputDescription={inputDescription}
+                            changeInputTitle={changeInputTitle}
+                            changeInputColor={changeInputColor}
+                            changeInputDescription={changeInputDescription}
+                        />
+                        {
+                            todos ? todos.map((todo, index) => {
+                                return (
+                                    <TodoItem
+                                        key={index}
+                                        data={data}
+                                        todo={todo}
+                                        isOpen={isOpen}
+                                        setData={setData}
+                                        setIsOpen={setIsOpen}
+                                        changeTodoId={changeTodoId}
+                                        setButtonContext={setButtonContext}
+                                        changeInputTitle={changeInputTitle}
+                                        changeInputColor={changeInputColor}
+                                        changeInputDescription={changeInputDescription}
+                                    />)
+                            }) : ""
+                        }
+                    </div>
                 </div>
             </div>
         </div>
