@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { createTodo, updateTodo } from '../Redux/action';
 import './modal.css'
 
-const Modal = ({ isOpen, setIsOpen, buttonContext, inputTitle, inputDescription, inputColor, changeInputTitle, changeInputDescription, changeInputColor, todoIndex }) => {
+const Modal = (prop) => {
+    const { isOpen,data,setData, setIsOpen, buttonContext, inputTitle, todoId,changeTodoId } = prop
+    const {inputDescription, inputColor, changeInputTitle, changeInputDescription, changeInputColor} = prop
     const dispatch = useDispatch()
     return (
         <div id="modal-container" className={isOpen ? 'four' : 'off'}  >
@@ -58,18 +60,23 @@ const Modal = ({ isOpen, setIsOpen, buttonContext, inputTitle, inputDescription,
                                     description:inputDescription,
                                     color:inputColor
                                 }))
-                                setIsOpen(!isOpen)
-                            } else {
                                 changeInputTitle('')
                                 changeInputDescription('')
                                 changeInputColor('')
+                                setData(!data)
+                                setIsOpen(!isOpen)
+                            } else {
                                 dispatch(updateTodo({
-                                    // ...inputValues,
+                                    id:todoId,
                                     title:inputTitle,
                                     description:inputDescription,
                                     color:inputColor,
-                                    todoIndex
                                 }))
+                                changeInputTitle('')
+                                changeInputDescription('')
+                                changeInputColor('')
+                                changeTodoId('')
+                                setData(!data)
                                 setIsOpen(!isOpen)
                             }
                         }}
