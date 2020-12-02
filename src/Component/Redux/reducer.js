@@ -18,8 +18,8 @@ export const reducer = (state = todos, action) => {
             })
             break;
         case UPDATE_TODO:
-            const { title, description, color, id } = action.payload
-            axios.patch(API_URL_GET_ID_UPDATE_DELETE(id),{
+            const { title, description, color, _id } = action.payload
+            axios.patch(API_URL_GET_ID_UPDATE_DELETE(_id),{
                 title:title,
                 description:description,
                 color:color

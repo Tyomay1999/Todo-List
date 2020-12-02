@@ -67,7 +67,7 @@ const Modal = (prop) => {
                                 setIsOpen(!isOpen)
                             } else {
                                 dispatch(updateTodo({
-                                    id:todoId,
+                                    _id:todoId,
                                     title:inputTitle,
                                     description:inputDescription,
                                     color:inputColor,

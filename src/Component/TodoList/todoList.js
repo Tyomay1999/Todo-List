@@ -5,7 +5,7 @@ import TodoItem from '../TodoItem/todoItem';
 import todoListModule from './todoList.module.css';
 import axios from 'axios';
 import { API_URL_GET_CREATE } from '../../config';
-import { getTodo, GET_TODO } from '../Redux/action';
+import { createTodo, deletTodo, getTodo, GET_TODO } from '../Redux/action';
 import SearchTodo from '../SearchTodo/searchTodo';
 
 const TodoList = () => {
@@ -17,6 +17,20 @@ const TodoList = () => {
     const [todoId, changeTodoId] = useState('')
     const [data, setData] = useState(false)
     const dispatch = useDispatch();
+    const todos = useSelector(state => state)
+    useEffect(() => {
+        if (sessionStorage.getItem('data')) {
+            let sessionStorageData = JSON.parse(sessionStorage.getItem('data'))
+            sessionStorageData.forEach(item => {
+                dispatch(deletTodo(item._id));
+                dispatch(createTodo({
+                    title: item.title,
+                    description: item.description,
+                    color: item.color
+                }));
+            })
+        }
+    }, [])
     useEffect(() => {
         setTimeout(() => {
             axios.get(API_URL_GET_CREATE)
@@ -31,8 +45,17 @@ const TodoList = () => {
                 })
         }, 1500)
     }, [data])
-
-    const todos = useSelector(state => state)
+    useEffect(() => {
+        const onbeforeunloadFn = () => {
+            if(todos){
+                sessionStorage.setItem('data', `${JSON.stringify(todos)}`);
+            }
+        }
+        window.addEventListener('beforeunload', onbeforeunloadFn);
+        return () => {
+            window.removeEventListener('beforeunload', onbeforeunloadFn);
+        }
+    }, [todos])
     return (
         <div>
             <SearchTodo
